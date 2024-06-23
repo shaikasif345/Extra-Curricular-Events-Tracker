@@ -1,0 +1,79 @@
+@keyframes draw {
+    0% {
+      stroke-dasharray: 50 50;
+      stroke-dashoffset: 50;
+    }
+    100% {
+      stroke-dasharray: 50 50;
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  body {
+    background-color: #ADD8E6; /* Light blue background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .success-message {
+    background-color: #FFFFFF; /* White box */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .checkmark-icon {
+    background-color: #4CAF50; /* Green circle */
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    animation: pulse 2s infinite; /* Continuous pulse effect */
+  }
+  
+  .checkmark {
+    fill: none;
+    stroke: #FFFFFF;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: draw 2s infinite; /* Continuous drawing effect */
+  }
+  
+  h1 {
+    color: #4CAF50; /* Green text */
+    margin-top: 0;
+  }
+  
+  p {
+    color: #000000; /* Black text */
+  }
+  
+  button {
+    background-color: #4CAF50; /* Green button */
+    color: #FFFFFF; /* White text */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  

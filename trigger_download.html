@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate File</title>
+    <script>
+        function generateFile() {
+            var fileName = localStorage.getItem('fileName');
+            var content = localStorage.getItem('fileContent');
+
+            if (fileName && content) {
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+                element.setAttribute('download', fileName);
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+
+                // Clear localStorage after download
+                localStorage.removeItem('fileName');
+                localStorage.removeItem('fileContent');
+            } else {
+                document.getElementById('message').innerText = "No data available to generate the file.";
+            }
+        }
+
+        window.onload = function() {
+            generateFile();  // Generate the file and trigger download
+        };
+    </script>
+</head>
+<body>
+    <h1>Generating File...</h1>
+    <p id="message">Your file should start downloading automatically. If it does not, please check your browser settings or try again.</p>
+</body>
+</html>

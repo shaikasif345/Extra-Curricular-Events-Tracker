@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendee Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("background33.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+        }
+
+        form {
+            width: 400px;
+            margin: 0 auto;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: medium;
+        }
+
+        button {
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .remove-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .remove-button:hover {
+            background-color: #d32f2f;
+        }
+
+        .download-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function addAttendee() {
+            var attendeeInput = document.getElementById('attendee');
+            var attendeeList = document.getElementById('attendeeList');
+            var attendee = attendeeInput.value;
+            if (attendee !== '') {
+                var listItem = document.createElement('li');
+                listItem.appendChild(document.createTextNode(attendee));
+                var removeButton = document.createElement('button');
+                removeButton.classList.add('remove-button');
+                removeButton.appendChild(document.createTextNode('Remove'));
+                removeButton.addEventListener('click', function() {
+                    listItem.parentNode.removeChild(listItem);
+                    updateLocalStorage();
+                });
+                listItem.appendChild(removeButton);
+                attendeeList.appendChild(listItem);
+                attendeeInput.value = '';
+
+                // Store in localStorage
+                var attendees = JSON.parse(localStorage.getItem('attendees')) || [];
+                attendees.push(attendee);
+                localStorage.setItem('attendees', JSON.stringify(attendees));
+            }
+        }
+
+        function updateLocalStorage() {
+            var attendeeItems = document.getElementById('attendeeList').getElementsByTagName('li');
+            var attendees = [];
+            for (var i = 0; i < attendeeItems.length; i++) {
+                attendees.push(attendeeItems[i].textContent.replace('Remove', '').trim());
+            }
+            localStorage.setItem('attendees', JSON.stringify(attendees));
+        }
+
+        function clearAttendees() {
+            localStorage.removeItem('attendees');
+            location.reload();  // Reload the page to clear the list
+        }
+
+        function saveAttendeesToFile() {
+            var attendees = JSON.parse(localStorage.getItem('attendees')) || [];
+            var eventName = document.getElementById('eventName').value;
+            var eventDate = document.getElementById('eventDate').value;
+
+            var content = 'Event Name: ' + eventName + '\n';
+            content += 'Event Date: ' + eventDate + '\n';
+            content += 'Attendees:\n' + attendees.join('\n');
+
+            var fileName = eventDate + '_' + eventName + '.txt';
+            localStorage.setItem('fileName', fileName);
+            localStorage.setItem('fileContent', content);
+        }
+    </script>
+</head>
+<body>
+    <h1>Attendee Form</h1>
+    <form onsubmit="saveAttendeesToFile()">
+        <label for="eventName">Event Name:</label>
+        <input type="text" id="eventName" required><br>
+        <label for="eventDate">Event Date:</label>
+        <input type="date" id="eventDate" required><br>
+        <label for="attendee">Attendee Name:</label>
+        <input type="text" id="attendee" required>
+        <button type="button" onclick="addAttendee()">Add Attendee</button><br>
+        <ul id="attendeeList"></ul><br>
+        <button type="button" onclick="clearAttendees()">Clear Attendees</button>
+        <div class="download-link">
+            <a href="#" onclick="saveAttendeesToFile()">Save And Upload</a>
+        </div>
+    </form>
+
+    <script>
+        // Function to load attendees from localStorage
+        function loadAttendees() {
+            var attendees = JSON.parse(localStorage.getItem('attendees')) || [];
+            var attendeeList = document.getElementById('attendeeList');
+            attendees.forEach(function(attendee) {
+                var listItem = document.createElement('li');
+                listItem.appendChild(document.createTextNode(attendee));
+                var removeButton = document.createElement('button');
+                removeButton.classList.add('remove-button');
+                removeButton.appendChild(document.createTextNode('Remove'));
+                removeButton.addEventListener('click', function() {
+                    listItem.parentNode.removeChild(listItem);
+                    // Remove from localStorage
+                    var index = attendees.indexOf(attendee);
+                    if (index > -1) {
+                        attendees.splice(index, 1);
+                        localStorage.setItem('attendees', JSON.stringify(attendees));
+                    }
+                });
+                listItem.appendChild(removeButton);
+                attendeeList.appendChild(listItem);
+            });
+        }
+
+        window.onload = function() {
+            loadAttendees();  // Load attendees from localStorage on page load
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudent Management System</title>
+  <link rel="stylesheet" href="StudentManagementSystem.css">
+  
+</head>
+<!-- heading item start here -->
+<div class="container" id="heading">
+  <div class="box" id="heading-item">
+    <header> Manage Student </header>
+  </div>
+</div>
+<!-- heding item end here -->
+
+
+<!-- form starts here -->
+<div class="tt" id="con1">
+  <div class="box1" id="b1">
+    <form id="myForm">
+      <div class="form-group">
+        <label class="form-label" for="firstname">Student Name</label>
+        <input class="form-input" type="text" id="firstname" name="firstname" placeholder="Enter Student Name" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="lastname">Roll No</label>
+        <input class="form-input" type="text" id="lastname" name="lastname" placeholder="Enter Roll no" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="course">Department</label>
+        <input class="form-input" type="text" id="course" name="course" placeholder="Enter Department" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="division">Course</label>
+        <input class="form-input" type="text" id="division" name="division" placeholder="Enter Course name" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="percentage">Event Name</label>
+        <input class="form-input" type="text" id="percentage" 
+          placeholder="Enter Event Name" required>
+      </div>
+
+
+
+      <button type="submit" id="submit">SUBMIT</button>
+      <button type="reset" id="reset">CLEAR</button>
+
+    </form>
+  </div>
+</div>
+<!-- form ends here -->
+
+<!-- datatable starts here -->
+<table id="dataTable">
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Roll no</th>
+      <th>Department</th>
+      <th>Course</th>
+      <th>Event Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- The table data will be dynamically added here -->
+  </tbody>
+</table>
+
+<!-- table ends here -->
+<script>
+
+document.getElementById('myForm').addEventListener('submit', function (e) {   
+  e.preventDefault();
+
+
+  var firstname = document.getElementById('firstname').value;
+  var lastname = document.getElementById('lastname').value;
+  var course = document.getElementById('course').value;
+  var division = document.getElementById('division').value;
+  var percentage = document.getElementById('percentage').value;
+
+  var table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+  var row=table.insertRow();
+
+  row.innerHTML =
+    '<td>' + firstname + '</td>' +
+    '<td>' + lastname + '</td>' +
+    '<td>' + course + '</td>' +
+    '<td>' + division + '</td>' +
+    '<td>' + percentage + '</td>';
+});
+
+</script>
+</body>
+
+</html>

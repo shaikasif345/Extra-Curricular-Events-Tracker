@@ -1,0 +1,156 @@
+* {
+    margin: 0%;
+    overflow: auto;
+}
+
+body {
+    background-image: url("managestudent.jpg");
+    background-repeat: no-repeat;
+    background-position: center center ;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+}
+
+/* heding item */
+.container {
+    background-color: blue;
+    max-width: 100vw;
+    cursor: none;
+    text-align: center;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    color: #fff;
+
+}
+
+.box {
+    font-size: 2rem;
+    
+
+}
+
+/* heding item end */
+
+
+/* form starts here */
+#con1 {
+    font-size: larger;
+    font-weight: bold;
+    font-family: monospace;
+    margin: 2rem;
+    height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#b1 {
+    background-color: rgba(0, 0, 0, 0.128);
+    border-radius: 10px;
+    height: 272px;
+    width: 400px;
+    padding: 20px 20px 20px 20px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    
+}
+
+.form-label {
+    flex: 0 0 120px;
+    color: white;
+
+}
+
+.form-input {
+    flex: 1;
+    padding: 5px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    outline: none;
+    font-weight: bold;
+    color: white;
+}
+
+
+
+ .form-input:hover::placeholder{
+    color: burlywood;   
+ }
+
+.form-input:hover {
+    border-bottom-color: rgb(7, 201, 255);
+}
+
+#submit{
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+    transition: background-color 0.3s;
+
+}
+#submit:hover{
+    background-color: rgba(9, 254, 30, 0.703);
+    color: black;
+}
+
+#reset{
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    float: left;
+    transition: background-color 0.3s;
+
+}
+#reset:hover{
+    background-color: rgba(255, 0, 0, 0.731);
+    color: rgb(255, 255, 255);
+}
+/* form ends here */
+
+
+/* datatable starts here */
+#dataTable {
+    width: 100%;
+}
+
+#dataTable th,td {
+    border: 1px solid white;
+    text-align: center;
+    padding: 8px;
+    background-color: white;
+    font-weight: bolder;
+    font-size: 20px;
+  }
+  
+  #dataTable th {
+    background-color: #000000ac;
+    color: white;
+  }
+  
+  .select-button {
+    background-color: #00bbff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  
+
+
+/* DATA table ends here */
+

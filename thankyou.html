@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Success Message</title>
+<link rel="stylesheet" href="thankyou.css">
+</head>
+<body>
+
+<div class="success-message">
+  <div class="checkmark-icon">
+    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+      <path fill="none" stroke="#FFFFFF" stroke-width="5" d="M14,27l5.7,5.7l14-14"/>
+    </svg>
+  </div>
+  <h1>Thank You!</h1>
+  <p>Your details have been successfully submitted</p>
+  <button onclick="redirectToOK()">OK</button>
+</div>
+<script>
+    function redirectToOK() {
+        // Replace 'https://example.com' with the actual URL you want to redirect to
+        window.location.href = 'students_dashboard.html';
+    }
+</script>
+
+</body>
+</html>
